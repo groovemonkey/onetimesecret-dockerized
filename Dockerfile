@@ -21,7 +21,7 @@ RUN apt-get -y install redis-server
 WORKDIR /root
 RUN git clone https://github.com/onetimesecret/onetimesecret
 
-# Old Ruby :((
+# Build Super-Ancient Ruby :((
 RUN curl -O https://cache.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p362.tar.bz2
 RUN tar xjf ruby-1.9.3-p362.tar.bz2
 WORKDIR ruby-1.9.3-p362
@@ -32,7 +32,6 @@ RUN gem install bundler
 # COPY ./Gemfile.override /root/onetimesecret/Gemfile
 WORKDIR /root/onetimesecret
 RUN bundle install --deployment --without dev
-# RUN rm Gemfile.lock && bundle install --without dev
 RUN bin/ots init
 
 # OTS user and directories

@@ -45,6 +45,7 @@ Just cd to this project directory and run
 FIX with newer versions of ruby (2.3) + up-to-date gems:
 
     RUN sed -i "s|require 'gibbler'|require 'gibbler/mixins'|g" /root/onetimesecret/lib/onetime.rb
+    RUN rm Gemfile.lock && bundle install --without dev
 
 
 ## redis unix sockets not supported?
