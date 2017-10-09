@@ -36,13 +36,21 @@ Just cd to this project directory and run
 
 # TODO:
 
-FIX with newer versions of ruby (2.3) + up-to-date gems:
-sed -i "s|require 'gibbler'|require 'gibbler/mixins'|g" /root/onetimesecret/lib/onetime.rb
+- log to stdout/stderr (redis.conf and...somehow...the ruby app?)
+- where/why is port 7143 getting hardcoded on the website? It's in all the nav links.
 
-# redis unix sockets not supported?
+
+
+## Upgrade to newer versions of Ruby
+FIX with newer versions of ruby (2.3) + up-to-date gems:
+
+    RUN sed -i "s|require 'gibbler'|require 'gibbler/mixins'|g" /root/onetimesecret/lib/onetime.rb
+
+
+## redis unix sockets not supported?
 NoMethodError: undefined method serverid for #<URI::Generic:0x00000000032a3a98>
 
 
-- run as a separate 'ots' user?
+## run as a separate 'ots' user?
 - use ots' $HOME as the WORKDIR?
 - RUN chown ots /etc/onetime /var/log/onetime /var/run/onetime /var/lib/onetime

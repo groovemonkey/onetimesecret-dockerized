@@ -44,18 +44,13 @@ COPY ./redis.conf /etc/onetime/redis.conf
 
 EXPOSE 80
 
-## BUG FIXES (dcohen)
-# RUN sed -i "s|require 'gibbler'|require 'gibbler/mixins'|g" /root/onetimesecret/lib/onetime.rb
-
-
 # RUN SERVICES
 # redis-server /etc/onetime/redis.conf
-# bundle exec thin -e dev -R config.ru -p 7143 start
 # bundle exec thin -e prod -R config.ru -p 80 start
 
 ## ENTRYPOINT ["redis-server", "/etc/onetime/redis.conf", "&&", bundle", "exec", "thin", "-e", "prod", "-R", "/root/onetimesecret/config.ru", "-p", "80", "start",]
 
-# ENTRYPOINT redis-server /etc/onetime/redis.conf && bundle exec thin -e prod -R /root/onetimesecret/config.ru -p 80 start
+ENTRYPOINT redis-server /etc/onetime/redis.conf && bundle exec thin -e prod -R /root/onetimesecret/config.ru -p 80 start
 
 
 
